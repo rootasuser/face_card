@@ -1,0 +1,75 @@
+        body {
+            background-color: #ffe5cc;
+        }
+        .navbar-custom {
+            background-color: #fff;
+            padding: 1rem;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #000;
+        }
+
+        .navbar-toggler-icon {
+            color: #000;
+            font-size: 1.25rem;
+        }
+
+        .hero {
+            background-color: #ffe5cc;
+            margin-top: 100px;
+            padding: 50px 0;
+        }
+
+        .cta-button {
+            background-color: #ff69b4;
+            color: #fff;
+            border-radius: 50px;
+            font-weight: bold;
+            padding: 12px 30px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background-color: #ff1493;
+            color: #fff;
+        }
+
+        .h2-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: rgb(136, 0, 68);
+            margin-bottom: 20px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 30px;
+        }
+
+        .benefits-list li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .search-form {
+            position: relative;
+        }
+
+        .search-form input {
+            padding-right: 35px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+
+        .nav-item .nav-link i {
+            font-size: 1.2rem;
+        }
