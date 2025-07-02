@@ -27,7 +27,7 @@ if ($userId) {
     <?php include('../assets/dependencies/fontawesome.php'); echo $fontawesome; ?>
     <link rel="stylesheet" href="../assets/css/index.css" />
 </head>
-<body>
+<body style="background: #FFEACA;">
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-custom">
