@@ -8,7 +8,7 @@ require_once './../controllers/UserProductsController.php';
 
        <!-- Floating Cart Card -->
     <div class="floating-cart-card">
-        <a href="?page=cart" class="btn btn-danger btn-block">
+        <a href="?page=cart" class="btn btn-block" style="background-color: #FFEACA; color: #835151; border-radius: 10px; font-weight: bold; text-decoration: none;">
             <i class="fas fa-cart-plus mr-2"></i> View my shopping cart
         </a>
     </div>
@@ -47,7 +47,7 @@ require_once './../controllers/UserProductsController.php';
                            value="<?= htmlspecialchars($search) ?>" 
                            style="border-radius: 50px 0 0 50px;">
                     <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit" style="border-radius: 0 50px 50px 0;">
+                        <button class="btn" type="submit" style="border-radius: 0 50px 50px 0; background-color: #F08FC0; color: #fff; border: none;">
                             <i class="fas fa-search mr-2"></i>Search
                         </button>
                     </div>
@@ -67,7 +67,7 @@ require_once './../controllers/UserProductsController.php';
                         $isOutOfStock = $product['quantity'] == 0;
                     ?>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <div class="card h-100 border-0 shadow-lg" style="border-radius: 15px; overflow: hidden;">
+                        <div class="card h-100 border-0 shadow-lg" style="border-radius: 15px; overflow: hidden; background-color: #FFEACA;">
                             <div class="position-relative">
                                 <img src="<?= htmlspecialchars($imagePath) ?>" 
                                      class="card-img-top" 
@@ -91,7 +91,7 @@ require_once './../controllers/UserProductsController.php';
                                     <?= htmlspecialchars(substr($product['description'], 0, 100)) . 
                                         (strlen($product['description']) > 100 ? '...' : '') ?>
                                 </p>
-                                <h4 class="text-primary font-weight-bold mb-3">
+                                <h4 class="font-weight-bold mb-3" style="color: #835151;">
                                     ₱<?= number_format($product['price'], 2) ?>
 
                                     <p class="text-muted small mb-2 mt-2">
@@ -105,12 +105,18 @@ require_once './../controllers/UserProductsController.php';
                                     <input type="hidden" name="product_image" value="<?= htmlspecialchars($product['image']) ?>">
                                     <input type="hidden" name="product_price" value="<?= $product['price'] ?>">
                                     <input type="hidden" name="product_quantity" value="<?= $product['quantity']; ?>">
-                                    <button type="submit"
-                                            class="btn btn-<?= $isOutOfStock ? 'secondary' : 'success' ?> btn-lg btn-block"
-                                            <?= $isOutOfStock ? 'disabled title="This product is out of stock."' : '' ?>>
-                                        <i class="fas fa-<?= $isOutOfStock ? 'ban' : 'cart-plus' ?> mr-2"></i>
-                                        <?= $isOutOfStock ? 'Unavailable' : 'Add to Cart' ?>
-                                    </button>
+                                   <button type="submit"
+                                    class="btn btn-lg btn-block"
+                                    style="
+                                        background-color: <?= $isOutOfStock ? '#835151' : '#F08FC0' ?>;
+                                        color: #fff;
+                                        border: none;
+                                    "
+                                    <?= $isOutOfStock ? 'disabled title="This product is out of stock."' : '' ?>>
+                                    <i class="fas fa-<?= $isOutOfStock ? 'ban' : 'cart-plus' ?> mr-2"></i>
+                                    <?= $isOutOfStock ? 'Unavailable' : 'Add to Cart' ?>
+                                </button>
+
                                 </form>
                             </div>
                         </div>
