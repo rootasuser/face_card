@@ -1,11 +1,13 @@
 <!-- Request Authentication -->
 <?php require_once 'controllers/AuthController.php'; ?>
 
-<!--- Toast Notification Upper Rightside Corner-->
+<!-- Toast Notification -->
 <?php if (!empty($toast['message'])): ?>
-<div class="toast-container" style="position: fixed; top: 1rem; right: 1rem; z-index: 9999;">
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
     <div id="liveToast" class="toast bg-<?= $toast['type'] ?> text-white" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
         <div class="toast-header bg-<?= $toast['type'] ?> text-white">
+            <strong class="mr-auto"><?= ucfirst($toast['type']) ?></strong>
+            <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -15,75 +17,82 @@
     </div>
 </div>
 <script>
-    window.addEventListener('DOMContentLoaded', function () {
-        var toastEl = document.getElementById('liveToast');
-        if (toastEl) {
-            var toast = new bootstrap.Toast(toastEl); 
-            toast.show();
-        }
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#liveToast').toast('show');
     });
 </script>
 <?php endif; ?>
 
+<!-- Sign In / Sign Up Card -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow mt-5" style="background-color: #FFE8CA; border-radius: 10px;">
+        <div class="card-body text-center">
+          <img src="assets/images/face_card_logo.png" alt="Logo" class="mb-3 rounded-circle" width="100" height="100">
+          <h5 class="card-title">Sign In</h5>
 
+          <!-- Sign In Form -->
+          <form method="POST" action="" id="signin-form">
+            <div class="form-group" style="max-width: 300px; margin: auto;">
+              <input type="email" name="email" class="form-control" placeholder="Email Address" style="border-radius: 10px;" required>
+            </div>
+            <div class="form-group" style="max-width: 300px; margin: auto; margin-top: 10px;">
+              <input type="password" name="password" class="form-control" placeholder="Password" style="border-radius: 10px;" required>
+            </div>
+            <button type="submit" class="btn btn-block" name="login" style="background-color: #FFBCBC; color: #835151; font-weight: bolder; max-width: 300px; margin: auto; margin-top: 10px; border-radius: 10px;">Sign In</button>
+          </form>
 
-<div class="card card-signin">
-    <div class="card-body text-center">
-        <img src="assets/images/face_card_logo.png" alt="Logo" class="mb-3 rounded-circle" width="100" height="100">
-        <h5 class="card-title">Sign In</h5>
-                <form method="POST" action="" id="signin-form">
-                <div class="form-group">
-                    <input type="email" name="email" id="email" class="form-signin-input" placeholder="Email Address" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" id="password" class="form-signin-input" placeholder="Password" required>
-                </div>
-                <button type="submit" class="form-signin-button" name="login">Sign In</button>
-            </form>
+          <!-- Sign Up Form -->
+          <form method="POST" action="" id="signup-form" style="display: none;">
+            <div class="form-group" style="max-width: 300px; margin: auto;">
+              <input type="email" name="email" class="form-control" placeholder="Email Address" style="border-radius: 10px;" required>
+            </div>
+            <div class="form-group" style="max-width: 300px; margin: auto; margin-top: 10px;">
+              <input type="password" name="password" class="form-control" placeholder="Password" style="border-radius: 10px;" required>
+            </div>
+            <div class="form-group" style="max-width: 300px; margin: auto; margin-top: 10px;">
+              <select name="role" class="form-control" required>
+                <option value="user">User</option>
+                <option value="seller">Seller</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-block" name="register" style="background-color: #FFBCBC; color: #835151; font-weight: bolder; max-width: 300px; margin: auto; margin-top: 10px; border-radius: 10px;">Sign Up</button>
+          </form>
 
-         <form method="POST" action="" id="signup-form">
-            <div class="form-group">
-                <input type="email" name="email" id="email" class="form-signin-input" placeholder="Email Address" required>
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" id="password" class="form-signin-input" placeholder="Password" required>
-            </div>
-             <div class="form-group">
-                <select name="role" id="role" class="form-signin-input">
-                    <option value="user">User</option>
-                    <option value="seller">Seller</option>
-                </select>
-            </div>
-            <button type="submit" class="form-signin-button" name="register">Sign up</button>
-        </form>
-        <div class="card-text mt-3 mb-3">
-            <a href="#" class="create-text" id="create-account-button" onclick="loadSignUpForm()">Create Account</a>
-             <a href="#" class="create-text" id="login-account-button" onclick="loadSignInForm()">Login Account</a>
+          <!-- Toggle Links -->
+          <div class="mt-3">
+            <a href="#" id="create-account-button" style="color: #835151; font-weight: bolder;" onclick="loadSignUpForm()">Create Account</a>
+            <a href="#" id="login-account-button" style="color: #835151; font-weight: bolder;" onclick="loadSignInForm()" style="display: none;">Login</a>
+          </div>
+
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
+<!-- Toggle Logic -->
 <script>
-//==> Show first 
- document.getElementById('signin-form').style.display = 'block';
- document.getElementById('create-account-button').style.display = 'block';
+  // Default visibility
+  document.getElementById('signin-form').style.display = 'block';
+  document.getElementById('create-account-button').style.display = 'block';
+  document.getElementById('signup-form').style.display = 'none';
+  document.getElementById('login-account-button').style.display = 'none';
 
- document.getElementById('signup-form').style.display = 'none';
- document.getElementById('login-account-button').style.display = 'none';
-
-function loadSignUpForm() {
+  function loadSignUpForm() {
     document.getElementById('signin-form').style.display = 'none';
     document.getElementById('create-account-button').style.display = 'none';
-
     document.getElementById('signup-form').style.display = 'block';
-    document.getElementById('login-account-button').style.display = 'block';
-}
+    document.getElementById('login-account-button').style.display = 'inline-block';
+    document.querySelector('.card-title').textContent = "Create Account";
+  }
 
-function loadSignInForm() {
+  function loadSignInForm() {
     document.getElementById('signin-form').style.display = 'block';
-    document.getElementById('create-account-button').style.display = 'block';
-
+    document.getElementById('create-account-button').style.display = 'inline-block';
     document.getElementById('signup-form').style.display = 'none';
     document.getElementById('login-account-button').style.display = 'none';
-}
+    document.querySelector('.card-title').textContent = "Sign In";
+  }
 </script>
